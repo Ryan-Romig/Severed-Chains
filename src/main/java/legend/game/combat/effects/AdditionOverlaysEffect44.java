@@ -47,7 +47,6 @@ import static legend.lodmod.LodMod.INPUT_ACTION_BTTL_COUNTER;
 
 public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.VoidType> {
   private static final Logger LOGGER = LogManager.getFormatterLogger(AdditionOverlaysEffect44.class);
-//  private static final FontOptions UI_WHITE_SHADOWED = new FontOptions().colour(TextColour.WHITE).shadowColour(TextColour.BLACK).horizontalAlign(HorizontalAlign.CENTRE);
 
   public int attackerScriptIndex_00;
   public int targetScriptIndex_04;
