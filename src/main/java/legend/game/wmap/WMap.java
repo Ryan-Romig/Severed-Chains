@@ -101,6 +101,7 @@ import static legend.game.Models.animateModel;
 import static legend.game.Models.applyModelRotationAndScale;
 import static legend.game.Models.initModel;
 import static legend.game.Models.loadModelStandardAnimation;
+import static legend.game.SItem.UI_WHITE_SHADOWED;
 import static legend.game.Scus94491BpeSegment.rand;
 import static legend.game.Scus94491BpeSegment.resetSubmapToNewGame;
 import static legend.game.Scus94491BpeSegment.simpleRand;
@@ -175,6 +176,7 @@ import static legend.lodmod.LodMod.INPUT_ACTION_WMAP_ZOOM_IN;
 import static legend.lodmod.LodMod.INPUT_ACTION_WMAP_ZOOM_OUT;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 
+
 public class WMap extends EngineState {
   private enum WorldMapState {
     UNINITIALIZED_0(0),
@@ -226,8 +228,7 @@ public class WMap extends EngineState {
     SET_DEST_9,
   }
 
-  public static final FontOptions UI_WHITE_SHADOWED = new FontOptions().colour(TextColour.WHITE).shadowColour(TextColour.BLACK).horizontalAlign(HorizontalAlign.CENTRE);
-  public static final FontOptions UI_WHITE_SHADOWED_RIGHT = new FontOptions().colour(TextColour.WHITE).shadowColour(TextColour.BLACK).horizontalAlign(HorizontalAlign.RIGHT);
+
 
   private boolean reinitializingWmap_80052c6c;
 

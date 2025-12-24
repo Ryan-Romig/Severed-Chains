@@ -33,6 +33,7 @@ import static legend.core.GameEngine.PLATFORM;
 import static legend.core.GameEngine.RENDERER;
 import static legend.core.GameEngine.SCRIPTS;
 import static legend.game.Graphics.GsGetLw;
+import static legend.game.SItem.UI_WHITE_SHADOWED;
 import static legend.game.Scus94491BpeSegment.battlePreloadedEntities_1f8003f4;
 import static legend.game.Text.renderText;
 import static legend.game.combat.SEffe.additionBorderColours_800fb7f0;
@@ -46,7 +47,7 @@ import static legend.lodmod.LodMod.INPUT_ACTION_BTTL_COUNTER;
 
 public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.VoidType> {
   private static final Logger LOGGER = LogManager.getFormatterLogger(AdditionOverlaysEffect44.class);
-  private static final FontOptions UI_WHITE_SHADOWED = new FontOptions().colour(TextColour.WHITE).shadowColour(TextColour.BLACK).horizontalAlign(HorizontalAlign.CENTRE);
+//  private static final FontOptions UI_WHITE_SHADOWED = new FontOptions().colour(TextColour.WHITE).shadowColour(TextColour.BLACK).horizontalAlign(HorizontalAlign.CENTRE);
 
   public int attackerScriptIndex_00;
   public int targetScriptIndex_04;

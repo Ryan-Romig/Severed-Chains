@@ -128,6 +128,7 @@ import static legend.game.Graphics.zMax_1f8003cc;
 import static legend.game.Graphics.zMin;
 import static legend.game.Graphics.zShift_1f8003c4;
 import static legend.game.Models.applyModelRotationAndScale;
+import static legend.game.SItem.UI_WHITE_SHADOWED;
 import static legend.game.Scus94491BpeSegment.battlePreloadedEntities_1f8003f4;
 import static legend.game.Scus94491BpeSegment.battleUiParts;
 import static legend.game.Scus94491BpeSegment.rand;
@@ -143,7 +144,6 @@ import static legend.game.combat.Battle.melbuStageIndices_800fb064;
 import static legend.game.combat.Battle.seed_800fa754;
 import static legend.game.combat.Battle.stageDarkeningClutWidth_800c695c;
 import static legend.game.combat.Battle.stageDarkening_800c6958;
-import static legend.game.wmap.WMap.UI_WHITE_SHADOWED;
 import static legend.lodmod.LodMod.INPUT_ACTION_BTTL_ATTACK;
 import static org.lwjgl.opengl.GL11C.GL_TRIANGLES;
 
@@ -1268,15 +1268,14 @@ public final class SEffe {
         buttonHudMetricsIndex = 33;
       } else {
         //LAB_80107ad4
-        renderButtonPressHudElement1(36, x1, y0 + 56, Translucency.B_PLUS_F, 128);
+        renderButtonPressHudElement1(36, x1 + 2.2f, y0 + 62, Translucency.B_PLUS_F, 128);
         buttonHudMetricsIndex = 35;
       }
     }
 
     //LAB_80107b10
     // Button
-//    renderButtonPressHudElement1(buttonHudMetricsIndex, x0 + 12, y0 + 66, Translucency.B_PLUS_F, 128);
-    renderText(InputCodepoints.getActionName( INPUT_ACTION_BTTL_ATTACK.get()), GPU.getOffsetX() + 87.85f, GPU.getOffsetY() + 8, UI_WHITE_SHADOWED);
+    renderText(InputCodepoints.getActionName(INPUT_ACTION_BTTL_ATTACK.get()), GPU.getOffsetX() + 87.85f, GPU.getOffsetY() + 8, UI_WHITE_SHADOWED);
 
     // Button press red glow
     if(daddy.buttonPressGlowBrightnessFactor_11 != 0) {
