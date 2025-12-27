@@ -791,31 +791,30 @@ public class BattleHud {
 
             //SP bars
             //LAB_800f0714
-            for(int i = 0; i < 2; i++) {
-              int spBarW;
-              if(i == 0) {
-                spBarW = partialSp;
-                spBarIndex = fullLevels + 1;
-                //LAB_800f0728
-              } else if(fullLevels == 0) {
-                spBarW = 0;
+            final int maxDragoonLevel = 5;
+            for (int i = 0; i < maxDragoonLevel; i++) {
+              int spBarFillLevel = 0;
+
+              if (i < fullLevels) {
+                // Full SP bar
+                spBarFillLevel = 35;
+                spBarIndex = i;
+              } else if (i == fullLevels) {
+                // Partial SP bar
+                spBarFillLevel = Math.max(0, partialSp * 35 / 100);
+                spBarIndex = i;
               } else {
-                spBarW = 100;
-                spBarIndex = fullLevels;
+                continue;
               }
-
-              //LAB_800f0738
-              spBarW = Math.max(0, (short)spBarW * 35 / 100);
-
-              //LAB_800f0780
               final int left = displayStats.x_00 - centreScreenX_1f8003dc + 3;
               final int top = displayStats.y_02 - centreScreenY_1f8003de + 8;
-              final int right = left + spBarW;
+
+              final int right = left + spBarFillLevel;
               final int bottom = top + 3;
 
-              final int[] spBarColours = spBarColours_800c6f04[spBarIndex];
+              final int[] spBarColours = spBarColours_800c6f04[spBarIndex + 1];
 
-              if(this.spBars == null) {
+              if (this.spBars == null) {
                 this.spBars = new QuadBuilder("SPBar")
                   .monochrome(0, 229.0f / 255.0f)
                   .monochrome(1, 133.0f / 255.0f)
@@ -825,15 +824,28 @@ public class BattleHud {
                   .build();
               }
 
-              this.spBarTransforms.transfer.set(GPU.getOffsetX() + left, GPU.getOffsetY() + top, 120.0f);
-              this.spBarTransforms.scaling(right - left, bottom - top, 1.0f);
+              this.spBarTransforms.transfer.set(
+                GPU.getOffsetX() + left,
+                GPU.getOffsetY() + top, 120.0f);
+              this.spBarTransforms.scaling(right - left,
+                bottom - top,
+                1.0f);
 
-              RENDERER.queueOrthoModel(this.spBars, this.spBarTransforms, QueuedModelStandard.class).colour(spBarColours[0] / 255.0f, spBarColours[1] / 255.0f, spBarColours[2] / 255.0f);
+              RENDERER.queueOrthoModel(
+                  this.spBars,
+                  this.spBarTransforms,
+                  QueuedModelStandard.class)
+                .colour(
+                  spBarColours[0] / 255.0f,
+                  spBarColours[1] / 255.0f,
+                  spBarColours[2] / 255.0f
+                );
             }
-
+            //draw order top - left - bottom - right
+            final int numberOfSidesToDraw = 4;
             //SP border
             //LAB_800f0910
-            for(int i = 0; i < 4; i++) {
+            for(int i = 0; i < numberOfSidesToDraw; i++) {
               final int offsetX = displayStats.x_00 - centreScreenX_1f8003dc;
               final int offsetY = displayStats.y_02 - centreScreenY_1f8003de;
               this.drawLine(spBarBorderMetrics_800fb46c[i].x1_00 + offsetX, spBarBorderMetrics_800fb46c[i].y1_01 + offsetY, spBarBorderMetrics_800fb46c[i].x2_02 + offsetX, spBarBorderMetrics_800fb46c[i].y2_03 + offsetY, 0x60, 0x60, 0x60, false);
@@ -842,7 +854,8 @@ public class BattleHud {
             //Full SP meter
             if((charDisplay.flags_06 & 0x8) != 0) {
               //LAB_800f09ec
-              for(int i = 0; i < 4; i++) {
+              for(int i = 0; i < numberOfSidesToDraw; i++) {
+                //flashing red border
                 final int offsetX = displayStats.x_00 - centreScreenX_1f8003dc;
                 final int offsetY = displayStats.y_02 - centreScreenY_1f8003de;
                 this.drawLine(spBarFlashingBorderMetrics_800fb47c[i].x1_00 + offsetX, spBarFlashingBorderMetrics_800fb47c[i].y1_01 + offsetY, spBarFlashingBorderMetrics_800fb47c[i].x2_02 + offsetX, spBarFlashingBorderMetrics_800fb47c[i].y2_03 + offsetY, 0x80, 0, 0, false);
