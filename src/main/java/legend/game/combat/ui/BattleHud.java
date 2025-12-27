@@ -785,6 +785,9 @@ public class BattleHud {
           }
 
           if(canTransform) {
+            //value in pixels that fills an entire SP bar
+            final int spBarFullValue = 35;
+
             final int sp = player.stats.getStat(LodMod.SP_STAT.get()).getCurrent();
             final int fullLevels = sp / 100;
             final int partialSp = sp % 100;
@@ -792,20 +795,23 @@ public class BattleHud {
             //SP bars
             //LAB_800f0714
             final int maxDragoonLevel = 5;
+            //iterate through possible d-levels and render the sp bar if full, up to the current fullLevel,
+            // then render partial SP bar once all full levels are rendered
             for (int i = 0; i < maxDragoonLevel; i++) {
+              spBarIndex = i;
               int spBarFillLevel = 0;
-
-              if (i < fullLevels) {
+              if (spBarIndex < fullLevels) {
                 // Full SP bar
-                spBarFillLevel = 35;
-                spBarIndex = i;
-              } else if (i == fullLevels) {
-                // Partial SP bar
-                spBarFillLevel = Math.max(0, partialSp * 35 / 100);
-                spBarIndex = i;
+                spBarFillLevel = spBarFullValue;
+              } else if (spBarIndex == fullLevels) {
+                // Partial rendered after full bars
+                spBarFillLevel = Math.max(0, partialSp * spBarFullValue / 100);
               } else {
+                //don't render bars past current full sp level
+                //sp bar already set to 0, do nothing
                 continue;
               }
+
               final int left = displayStats.x_00 - centreScreenX_1f8003dc + 3;
               final int top = displayStats.y_02 - centreScreenY_1f8003de + 8;
 
