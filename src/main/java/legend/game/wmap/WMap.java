@@ -173,6 +173,7 @@ import static legend.lodmod.LodMod.INPUT_ACTION_WMAP_ZOOM_IN;
 import static legend.lodmod.LodMod.INPUT_ACTION_WMAP_ZOOM_OUT;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 
+
 public class WMap extends EngineState {
   private enum WorldMapState {
     UNINITIALIZED_0(0),
